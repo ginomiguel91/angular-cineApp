@@ -1,0 +1,50 @@
+<h1>Lista de Detalles</h1>
+
+<div
+  class="table-responsive-sm"
+  *ngIf="_detalles != null && _detalles.length > 0; else divNoContent"
+>
+  <div class="row">
+    <div class="col">
+      <table class="table table-dark table-bordered">
+        <thead>
+          <tr>
+            <th>Director</th>
+            <th>Actores</th>
+            <th>Trailer</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let d of _detalles">
+            <td>
+              <em>{{ d.director }}</em>
+            </td>
+            <td>{{ d.actores }}</td>
+            <td>{{ d.trailer }}</td>
+            <td>
+              <fa-icon
+                [routerLink]="['/detalles', d.id]"
+                [icon]="faSearch"
+              ></fa-icon>
+              <fa-icon
+                [routerLink]="['/detalles/edit', d.id]"
+                [icon]="faEdit"
+              ></fa-icon>
+              <fa-icon (click)="removeDetalle(d.id)" [icon]="faTrash"></fa-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #divNoContent>
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger">No hay datos!</div>
+    </div>
+  </div>
+</ng-template>

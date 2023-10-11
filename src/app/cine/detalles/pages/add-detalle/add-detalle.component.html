@@ -1,0 +1,115 @@
+<h1>{{ detalleNew.id ? "Editar" : "Agregar" }} detalle</h1>
+
+<form [formGroup]="detalleForm" (ngSubmit)="guardar()" autocomplete="off">
+  <div class="mb-3">
+    <label for="director" class="form-label">
+      <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+      <span class="badge rounded-pill bg-dark">Director</span>
+    </label>
+    <input
+      id="director"
+      type="text"
+      class="form-control"
+      formControlName="director"
+      required
+    />
+
+    <!-- mensajes de validaciones campo director-->
+
+    <div
+      *ngIf="director?.invalid && (director?.dirty || director?.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="director?.errors?.['required']">
+        El campo director es requerido !
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="actores" class="form-label">
+      <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+      <span class="badge rounded-pill bg-dark">Actores</span>
+    </label>
+    <input
+      id="actores"
+      formControlName="actores"
+      type="text"
+      class="form-control"
+      placeholder=""
+    />
+
+    <!-- mensajes de validaciones campo actores-->
+
+    <div
+      *ngIf="actores?.invalid && (actores?.dirty || actores?.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="actores?.errors?.['required']">
+        El campo actores es requerido !
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="sinopsis" class="form-label">
+      <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+      <span class="badge rounded-pill bg-dark">Sinopsis</span>
+    </label>
+    <textarea
+      id="sinopsis"
+      formControlName="sinopsis"
+      class="form-control"
+      rows="4"
+    ></textarea>
+
+    <!-- mensajes de validaciones campo sinopsis-->
+
+    <div
+      *ngIf="sinopsis?.invalid && (sinopsis?.dirty || sinopsis?.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="sinopsis?.errors?.['required']">
+        El campo sinopsis es requerido !
+      </div>
+      <div *ngIf="minLengthError('sinopsis')">
+        El campo sinopsis no cumple con los requisitos de longitud mínima!
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="trailer" class="form-label">
+      <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+      <span class="badge rounded-pill bg-dark">Trailer</span>
+    </label>
+    <input
+      id="trailer"
+      formControlName="trailer"
+      type="text"
+      class="form-control"
+      placeholder="http..."
+    />
+
+    <!-- mensajes de validaciones campo trailer-->
+
+    <div
+      *ngIf="trailer?.invalid && (trailer?.dirty || trailer?.touched)"
+      class="alert alert-danger"
+    >
+      <div>{{ errorMensajeCampoTrailer }}</div>
+    </div>
+  </div>
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button
+      [disabled]="detalleForm.invalid"
+      class="btn btn-success"
+      type="submit"
+    >
+      <fa-icon [icon]="faCheckDouble"></fa-icon>
+      {{ detalleNew.id ? "Actualizar" : "Guardar" }}
+    </button>
+    <a [routerLink]="['/detalles/list']" class="btn btn-danger" type="submit">
+      <fa-icon [icon]="faCancel"></fa-icon>
+      Cancelar</a
+    >
+  </div>
+</form>

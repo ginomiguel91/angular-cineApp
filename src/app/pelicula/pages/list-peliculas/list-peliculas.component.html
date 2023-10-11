@@ -1,0 +1,17 @@
+<h1>Lista de Películas</h1>
+
+<div
+  class="row"
+  *ngIf="peliculas != null && peliculas.length > 0; else divNoMovieData"
+>
+  <div class="col mb-4" *ngFor="let p of peliculas">
+    <app-movie-card
+      [pelicula]="p"
+      (eliminarPeliculaEvent)="removePelicula($event)"
+    ></app-movie-card>
+  </div>
+</div>
+
+<ng-template #divNoMovieData>
+  <div class="alert alert-danger">No hay datos!</div>
+</ng-template>

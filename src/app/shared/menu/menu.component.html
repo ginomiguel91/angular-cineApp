@@ -1,0 +1,11 @@
+<ul class="list-group mt-5">
+  <li
+    [routerLink]="[item.ruta]"
+    routerLinkActive="active"
+    class="list-group-item"
+    *ngFor="let item of menuItems"
+  >
+    <fa-icon [icon]="item.icon"></fa-icon>
+    {{ item.texto }}
+  </li>
+</ul>

@@ -1,0 +1,51 @@
+<div class="card" style="width: 20rem" *ngIf="pelicula">
+  <img
+    [src]="pelicula.imagen"
+    class="card-img-top"
+    style="height: 200px; width: 20rem"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ pelicula.titulo }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      <em
+        >Fecha de estreno: {{ pelicula.fechaEstreno | date : "YYYY-MM-dd" }}
+      </em>
+    </h6>
+    <p class="card-text">
+      {{ pelicula.detalle.sinopsis }}
+    </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <em
+        ><strong>Director: {{ pelicula.detalle.director }}</strong></em
+      >
+    </li>
+    <li class="list-group-item">
+      <em><strong>Actores:</strong>{{ pelicula.detalle.actores }}</em>
+    </li>
+    <li class="list-group-item">
+      <em><strong>Duración(min):</strong>{{ pelicula.duracion }}</em>
+    </li>
+    <li class="list-group-item">
+      {{ pelicula.clasificacion }}-{{ pelicula.genero }}
+    </li>
+    <li class="list-group-item">
+      Estatus:<span class="badge bg-primary">{{ pelicula.estatus }}</span>
+    </li>
+  </ul>
+  <div class="card-body border-rounded">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+      <a [routerLink]="['/peliculas/edit', pelicula.id]" class="btn btn-warning"
+        ><fa-icon [icon]="faEdit"></fa-icon> Editar</a
+      >
+
+      <a [href]="pelicula.detalle.trailer" class="btn btn-success">
+        <fa-icon [icon]="faEye"></fa-icon> Trailer</a
+      >
+      <a class="btn btn-danger" (click)="emitirEliminarPelicula()">
+        <fa-icon [icon]="faTrash"></fa-icon>Eliminar</a
+      >
+    </div>
+  </div>
+</div>
