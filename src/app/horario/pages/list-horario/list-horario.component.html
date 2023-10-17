@@ -1,0 +1,33 @@
+<h1><em>Cartelera</em></h1>
+
+<mat-accordion *ngFor="let h of horarios">
+  <mat-expansion-panel
+    *ngIf="horarios != null && horarios.length > 0; else NoContent"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Fecha-Hora/ {{ h.fecha | date : "YYYY-MM-dd" }}-
+        {{ h.hora }}
+      </mat-panel-title>
+
+      <mat-panel-description>
+        {{
+          panelOpenState
+            ? "Mostrando detalles de película..."
+            : "No se han visualizado los detalles de la película "
+        }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <strong>Sala: {{ h.sala }}</strong>
+    <p>
+      <strong>Precio($): {{ h.precio | number : "1.2-2" }}</strong>
+    </p>
+    <app-movie-card-simple [pelicula]="h.pelicula"></app-movie-card-simple>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<ng-template #NoContent>
+  <div class="alert alert-danger">No hay datos!</div>
+</ng-template>

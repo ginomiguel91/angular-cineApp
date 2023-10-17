@@ -1,4 +1,6 @@
-<h1>{{ detalleNew.id ? "Editar" : "Agregar" }} detalle</h1>
+<h1>
+  <em>{{ detalleNew.id ? "Editar" : "Agregar" }} detalle</em>
+</h1>
 
 <form [formGroup]="detalleForm" (ngSubmit)="guardar()" autocomplete="off">
   <div class="mb-3">

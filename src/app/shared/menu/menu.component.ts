@@ -5,6 +5,9 @@ import {
   faList,
   faSearch,
   IconDefinition,
+  faFilm,
+  faEye,
+  faHomeUser,
 } from '@fortawesome/free-solid-svg-icons';
 export interface Menu {
   ruta: string;
@@ -27,6 +30,7 @@ export class MenuComponent {
   faList = faList;
   faPlusCircle = faPlusCircle;
   faSearch = faSearch;
+  faHomeUser = faHomeUser;
   menuItems: Menu[] = [
     {
       ruta: '/detalles/list',
@@ -35,7 +39,7 @@ export class MenuComponent {
     },
     {
       ruta: '/detalles/add',
-      texto: 'Agregar detalle',
+      texto: 'Agregar detalles',
       icon: faPlusCircle,
     },
     {
@@ -46,7 +50,13 @@ export class MenuComponent {
     {
       ruta: '/peliculas/list',
       texto: 'Lista de películas',
-      icon: faList,
+      icon: faFilm,
+    },
+
+    {
+      ruta: '/horarios/list',
+      texto: '¿ Dónde ver ?',
+      icon: faEye,
     },
   ];
 }

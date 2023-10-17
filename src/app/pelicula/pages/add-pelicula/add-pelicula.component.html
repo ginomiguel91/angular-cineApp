@@ -1,4 +1,6 @@
-<h1>{{ peliculaNew.id ? "Editar" : "Agregar" }} película</h1>
+<h1>
+  <em>{{ peliculaNew.id ? "Editar" : "Agregar" }} película</em>
+</h1>
 
 <form [formGroup]="peliculaForm" autocomplete="off" (ngSubmit)="guardar()">
   <div class="mb-3">
@@ -119,33 +121,22 @@
     </div>
   </div>
 
-  <div class="mb-3">
-    <label for="imagen" class="form-label">
-      <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
-      <span class="badge rounded-pill bg-dark"> Fecha de Estreno</span>
-    </label>
+  <!-- Campo fechaEstreno -->
+  <mat-form-field>
+    <mat-label>
+      <span class="badge rounded-pill bg-dark"> Fecha de Estreno </span>
+    </mat-label>
     <input
-      id="fechaEstreno"
-      type="text"
-      class="form-control"
-      placeholder="YYYY-MM-dd"
+      matInput
+      [matDatepicker]="fechaEstreno"
       formControlName="fechaEstreno"
-      required
     />
-
-    <!-- mensajes de validaciones campo fechaEstreno-->
-
-    <div
-      *ngIf="
-        fechaEstreno?.invalid && (fechaEstreno?.dirty || fechaEstreno?.touched)
-      "
-      class="alert alert-danger"
-    >
-      <div *ngIf="fechaEstreno?.errors?.['required']">
-        El campo fechaEstreno es requerido !
-      </div>
-    </div>
-  </div>
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="fechaEstreno"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #fechaEstreno></mat-datepicker>
+  </mat-form-field>
 
   <!-- select estatus -->
   <div class="mb-3">

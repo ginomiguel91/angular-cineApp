@@ -34,18 +34,5 @@
       </li>
     </ul>
   </mat-card-content>
-  <mat-card-actions>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-      <a [routerLink]="['/peliculas/edit', pelicula.id]" class="btn btn-warning"
-        ><fa-icon [icon]="faEdit"></fa-icon> Editar</a
-      >
-
-      <a [href]="pelicula.detalle.trailer" class="btn btn-success">
-        <fa-icon [icon]="faEye"></fa-icon> Trailer</a
-      >
-      <a class="btn btn-danger" (click)="emitirEliminarPelicula()">
-        <fa-icon [icon]="faTrash"></fa-icon>Eliminar</a
-      >
-    </div>
-  </mat-card-actions>
+  <mat-card-actions> </mat-card-actions>
 </mat-card>

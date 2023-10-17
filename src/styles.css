@@ -1,7 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 #principal {
-  background-image: url("./assets/cineappfondo.webp");
+  background-image: url("./assets/template.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+mat-form-field {
+  margin-right: 12px;
 }

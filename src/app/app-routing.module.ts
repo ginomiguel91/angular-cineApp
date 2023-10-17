@@ -11,6 +11,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pelicula/pelicula.module').then((m) => m.PeliculaModule),
   },
+
+  {
+    path: 'horarios',
+    loadChildren: () =>
+      import('./horario/horario.module').then((m) => m.HorarioModule),
+  },
   {
     path: '**',
     redirectTo: 'peliculas',

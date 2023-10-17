@@ -8,6 +8,8 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddPeliculaComponent } from './pages/add-pelicula/add-pelicula.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedModule } from '../shared/shared.module';
+import { MovieCardSimpleComponent } from './components/movie-card-simple/movie-card-simple.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ShowPeliculaComponent,
     AddPeliculaComponent,
     MovieCardComponent,
+    MovieCardSimpleComponent,
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     PeliculaRoutingModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
+  exports: [MovieCardComponent, MovieCardSimpleComponent],
 })
 export class PeliculaModule {}
