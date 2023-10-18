@@ -7,6 +7,7 @@ import { ListHorarioComponent } from './pages/list-horario/list-horario.componen
 import { ShowHorarioComponent } from './pages/show-horario/show-horario.component';
 import { SharedModule } from '../shared/shared.module';
 import { PeliculaModule } from '../pelicula/pelicula.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,12 @@ import { PeliculaModule } from '../pelicula/pelicula.module';
     ListHorarioComponent,
     ShowHorarioComponent,
   ],
-  imports: [CommonModule, HorarioRoutingModule, SharedModule, PeliculaModule],
+  imports: [
+    CommonModule,
+    HorarioRoutingModule,
+    SharedModule,
+    PeliculaModule,
+    ReactiveFormsModule,
+  ],
 })
 export class HorarioModule {}

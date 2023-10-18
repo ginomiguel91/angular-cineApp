@@ -57,6 +57,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatCardModule,
     MatExpansionModule,
+    FontAwesomeModule,
   ],
 })
 export class SharedModule {}

@@ -1,1 +1,126 @@
-<p>add-horario works!</p>
+<h1>{{ horarioNew.id ? "Editar" : "Agregar" }} Cartelera</h1>
+<form [formGroup]="horarioForm" autocomplete="off" (ngSubmit)="guardar()">
+  <div class="mb-3">
+    <!-- Campo fechaEstreno -->
+    <mat-form-field>
+      <mat-label>
+        <span class="badge rounded-pill bg-dark"> Fecha </span>
+      </mat-label>
+      <input matInput [matDatepicker]="fecha" formControlName="fecha" />
+      <mat-datepicker-toggle matSuffix [for]="fecha"></mat-datepicker-toggle>
+      <mat-datepicker #fecha></mat-datepicker>
+    </mat-form-field>
+    <div *ngIf="errorFieldRequired('fecha')" class="alert alert-danger">
+      <div>El campo fecha es requerido !</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="hora" class="form-label">
+      <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+
+      <span class="badge rounded-pill bg-dark"> Hora</span>
+    </label>
+    <input
+      id="hora"
+      type="text"
+      class="form-control"
+      formControlName="hora"
+      placeholder="00:00"
+      required
+    />
+
+    <!-- Mensajes de validación de la hora -->
+
+    <div
+      *ngIf="hora?.invalid && (hora?.dirty || hora?.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="errorFieldRequired('hora')">El campo hora es requerido !</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="sala" class="form-label">
+      <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+      <span class="badge rounded-pill bg-dark">Sala</span>
+    </label>
+    <select
+      formControlName="sala"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option value="">--Seleccione SALA--</option>
+      <option value=" SALA A">SALA A</option>
+      <option value="SALA B">SALA B</option>
+      <option value=" SALA C">SALA C</option>
+    </select>
+
+    <div
+      *ngIf="sala?.invalid && (sala?.dirty || sala?.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="errorFieldRequired('sala')">El campo sala es requerido !</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="precio" class="form-label">
+      <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+      <span class="badge rounded-pill bg-dark">Precio($)</span>
+    </label>
+    <input
+      id="precio"
+      type="text"
+      class="form-control"
+      formControlName="precio"
+      required
+    />
+
+    <div
+      *ngIf="precio?.invalid && (precio?.dirty || precio?.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="errorFieldRequired('precio')">
+        El campo precio es requerido !
+      </div>
+    </div>
+  </div>
+
+  <!-- select de detalle -->
+  <div class="mb-3" formGroupName="pelicula">
+    <label for="pelicula" class="form-label">
+      <fa-icon [icon]="faAsterisk" style="color: red"></fa-icon>
+      <span class="badge rounded-pill bg-dark">Película</span>
+    </label>
+    <select
+      formControlName="id"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option value="null">--Seleccione película--</option>
+      <option *ngFor="let movie of peliculas" [value]="[movie.id]">
+        {{ movie.titulo }}
+      </option>
+    </select>
+  </div>
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button
+      [disabled]="horarioForm.invalid"
+      class="btn btn-success"
+      type="submit"
+    >
+      <fa-icon [icon]="faCheckDouble"></fa-icon>
+      {{ horarioNew.id ? "Actualizar" : "Guardar" }}
+    </button>
+    <a (click)="regresar()" class="btn btn-danger">
+      <fa-icon [icon]="faCancel"></fa-icon>
+
+      Cancelar</a
+    >
+  </div>
+</form>
+
+<h3>Formulario:Value</h3>
+<pre>{{ horarioForm.value | json }}</pre>

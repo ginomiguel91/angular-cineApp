@@ -8,6 +8,7 @@ import {
   faFilm,
   faEye,
   faHomeUser,
+  faFolderPlus,
 } from '@fortawesome/free-solid-svg-icons';
 export interface Menu {
   ruta: string;
@@ -31,6 +32,7 @@ export class MenuComponent {
   faPlusCircle = faPlusCircle;
   faSearch = faSearch;
   faHomeUser = faHomeUser;
+  faFolderPlus = faFolderPlus;
   menuItems: Menu[] = [
     {
       ruta: '/detalles/list',
@@ -57,6 +59,11 @@ export class MenuComponent {
       ruta: '/horarios/list',
       texto: '¿ Dónde ver ?',
       icon: faEye,
+    },
+    {
+      ruta: '/horarios/add',
+      texto: 'Agregar cartelera',
+      icon: faFolderPlus,
     },
   ];
 }

@@ -78,9 +78,15 @@ export class AddPeliculaComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    this.detalleService
-      .getDetalles()
-      .subscribe((resp) => (this.detalles = resp));
+    this.detalleService.getDetalles().subscribe({
+      next: (resp) => {
+        this.detalles = resp;
+      },
+
+      error: (err) => {
+        console.log('error', err);
+      },
+    });
 
     if (!this.route.url.includes('edit')) {
       return;

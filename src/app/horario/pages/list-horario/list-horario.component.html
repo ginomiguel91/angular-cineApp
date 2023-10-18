@@ -1,32 +1,44 @@
 <h1><em>Cartelera</em></h1>
 
-<mat-accordion *ngFor="let h of horarios">
-  <mat-expansion-panel
-    *ngIf="horarios != null && horarios.length > 0; else NoContent"
-    (opened)="panelOpenState = true"
-    (closed)="panelOpenState = false"
-  >
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Fecha-Hora/ {{ h.fecha | date : "YYYY-MM-dd" }}-
-        {{ h.hora }}
-      </mat-panel-title>
+<div
+  class="row"
+  *ngIf="horarios != null && horarios.length > 0; else NoContent"
+>
+  <mat-accordion *ngFor="let h of horarios">
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="badge rounded-pill bg-success">{{ h.sala }}</span>
+          {{ h.fecha | date : "YYYY-MM-dd" }}-
+          {{ h.hora }}
+        </mat-panel-title>
 
-      <mat-panel-description>
-        {{
-          panelOpenState
-            ? "Mostrando detalles de película..."
-            : "No se han visualizado los detalles de la película "
-        }}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <strong>Sala: {{ h.sala }}</strong>
-    <p>
-      <strong>Precio($): {{ h.precio | number : "1.2-2" }}</strong>
-    </p>
-    <app-movie-card-simple [pelicula]="h.pelicula"></app-movie-card-simple>
-  </mat-expansion-panel>
-</mat-accordion>
+        <mat-panel-description>
+          {{
+            panelOpenState
+              ? "Mostrando detalles de película..."
+              : "No se han visualizado los detalles de la película "
+          }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <strong>Sala: {{ h.sala }}</strong>
+      <p>
+        <strong>Precio($): {{ h.precio | number : "1.2-2" }}</strong>
+      </p>
+      <app-movie-card-simple [pelicula]="h.pelicula"></app-movie-card-simple>
+    </mat-expansion-panel>
+    <mat-card-actions>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a [routerLink]="['/horarios/edit', h.id]" class="btn btn-warning"
+          ><fa-icon [icon]="faEdit"></fa-icon> Editar</a
+        >
+      </div>
+    </mat-card-actions>
+  </mat-accordion>
+</div>
 
 <ng-template #NoContent>
   <div class="alert alert-danger">No hay datos!</div>
